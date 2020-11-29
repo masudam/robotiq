@@ -258,8 +258,7 @@
       </inertial>
     </link>
 
-
-    <!--  added contact sensor 11/21-->
+    <!--  added inside contact sensor 11/21-->
     <joint name="${prefix}robotiq_85_left_finger_tip_inside_contact_joint" type="fixed">
       <parent link="${prefix}robotiq_85_left_finger_tip_link"/>
       <child link="${prefix}robotiq_85_left_finger_tip_inside_contact_link"/>
@@ -286,13 +285,6 @@
         </geometry>
       </collision>
       <box_inertial mass="0.003" height="0.036" width="0.001" depth="0.02"/>
-      <!--inertial>
-        <mass value="0.019555" />
-        <origin xyz="0.0 0.0 0.0" />
-        <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
-             iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
-             izx = "0.000000" izy = "0.000000" izz = "0.000006" />
-      </inertial-->
     </link>
 
     <link name="${prefix}robotiq_85_right_finger_tip_inside_contact_link">
@@ -307,13 +299,6 @@
         </geometry>
       </collision>
       <box_inertial mass="0.003" height="0.036" width="0.001" depth="0.02"/>
-      <!--inertial>
-        <mass value="0.019555" />
-        <origin xyz="0.0 0.0 0.0" />
-        <inertia ixx = "0.000002" ixy = "0.000000" ixz = "0.000000"
-             iyx = "0.000000" iyy = "0.000005" iyz = "0.000000"
-             izx = "0.000000" izy = "0.000000" izz = "0.000006" />
-      </inertial-->
     </link>
 
     <gazebo reference="${prefix}robotiq_85_left_finger_tip_inside_contact_link">
@@ -357,9 +342,140 @@
 
 
 
+    <!--  added outside contact sensor 11/30-->
+    <joint name="${prefix}robotiq_85_left_finger_tip_outside_box_joint" type="fixed">
+      <parent link="${prefix}robotiq_85_left_finger_tip_link"/>
+      <child link="${prefix}robotiq_85_left_finger_tip_outside_box_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.025 -0.002  0.0"/>
+    </joint>
+
+    <joint name="${prefix}robotiq_85_right_finger_tip_outside_box_joint" type="fixed">
+      <parent link="${prefix}robotiq_85_right_finger_tip_link"/>
+      <child link="${prefix}robotiq_85_right_finger_tip_outside_box_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.025 -0.002  0.0"/>
+    </joint>
+
+    <link name="${prefix}robotiq_85_left_finger_tip_outside_box_link">
+      <visual>
+        <geometry>
+   	  <box size="0.036 0.007 0.02"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.036 0.007 0.02"/>
+        </geometry>
+      </collision>
+      <box_inertial mass="0.003" height="0.036" width="0.007" depth="0.02"/>
+    </link>
+
+    <gazebo reference="${prefix}robotiq_85_left_finger_tip_outside_box_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <link name="${prefix}robotiq_85_right_finger_tip_outside_box_link">
+      <visual>
+        <geometry>
+   	  <box size="0.036 0.007 0.02"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.036 0.007 0.02"/>
+        </geometry>
+      </collision>
+      <box_inertial mass="0.003" height="0.036" width="0.007" depth="0.02"/>
+    </link>
+
+    <gazebo reference="${prefix}robotiq_85_right_finger_tip_outside_box_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
 
 
 
+
+    <joint name="${prefix}robotiq_85_left_finger_tip_outside_contact_joint" type="fixed">
+      <parent link="${prefix}robotiq_85_left_finger_tip_outside_box_link"/>
+      <child link="${prefix}robotiq_85_left_finger_tip_outside_contact_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.004  0.0"/>
+    </joint>
+
+    <joint name="${prefix}robotiq_85_right_finger_tip_outside_contact_joint" type="fixed">
+      <parent link="${prefix}robotiq_85_right_finger_tip_outside_box_link"/>
+      <child link="${prefix}robotiq_85_right_finger_tip_outside_contact_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.004  0.0"/>
+    </joint>
+
+    <link name="${prefix}robotiq_85_left_finger_tip_outside_contact_link">
+      <visual>
+        <geometry>
+   	  <box size="0.036 0.001 0.02"/>
+        </geometry>
+      </visual>
+      <collision name="left_tip_outside_contact">
+        <geometry>
+          <box size="0.036 0.001 0.02"/>
+        </geometry>
+      </collision>
+      <box_inertial mass="0.003" height="0.036" width="0.001" depth="0.02"/>
+    </link>
+
+    <link name="${prefix}robotiq_85_right_finger_tip_outside_contact_link">
+      <visual>
+        <geometry>
+   	  <box size="0.036 0.001 0.02"/>
+        </geometry>
+      </visual>
+      <collision name="right_tip_outside_contact">
+        <geometry>
+          <box size="0.036 0.001 0.02"/>
+        </geometry>
+      </collision>
+      <box_inertial mass="0.003" height="0.036" width="0.001" depth="0.02"/>
+    </link>
+
+    <gazebo reference="${prefix}robotiq_85_left_finger_tip_outside_contact_link">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
+      <material>Gazebo/Red</material>
+      <sensor name="left_tip_outside_contact_sensor" type="contact">
+        <always_on>true</always_on>
+	<update_rate>500.0</update_rate>
+	<contact>
+          <collision>robotiq_85_left_finger_tip_link_fixed_joint_lump__left_tip_outside_contact_collision_3</collision>
+	</contact>
+        <plugin name="left_tip_outside_contact_plugin" filename="libgazebo_ros_bumper.so">
+          <bumperTopicName>left_tip_outside_contact_state</bumperTopicName>
+	  <frameName>left_tip_outside_contact_sensor</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+    <gazebo reference="${prefix}robotiq_85_right_finger_tip_outside_contact_link">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
+      <material>Gazebo/Red</material>
+      <sensor name="right_tip_outside_contact_sensor" type="contact">
+        <always_on>true</always_on>
+	<update_rate>500.0</update_rate>
+	<contact>
+          <collision>robotiq_85_right_finger_tip_link_fixed_joint_lump__right_tip_outside_contact_collision_3</collision>
+	</contact>
+        <plugin name="right_tip_outside_contact_plugin" filename="libgazebo_ros_bumper.so">
+          <bumperTopicName>right_tip_outside_contact_state</bumperTopicName>
+	  <frameName>right_tip_outside_contact_sensor</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
 
 
 
